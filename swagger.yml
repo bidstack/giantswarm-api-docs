@@ -1,0 +1,124 @@
+---
+swagger: '2.0'
+info:
+  title: GiantSwarm HTTP API
+  version: 0.10.2
+host: api.giantswarm.io
+schemes:
+  - https
+basePath: /v1
+consumes:
+  - application/json
+produces:
+  - application/json
+externalDocs:
+  description: Official GiantSwarm documentation.
+  url: http://docs.giantswarm.io/
+securityDefinitions:
+  basicAuth:
+    type: basic
+    description: HTTP basic authentication. Go to [giantswarm.io](https://www.giantswarm.io/) to create an account.
+paths:
+  /user/{email}/login:
+    post:
+      parameters:
+        - name: email
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/LoginRequest"
+      responses:
+        200:
+          description: User details and access token
+          schema:
+            $ref: "#/definitions/LoginResponse"
+  /user/me:
+    get:
+      security:
+        - basicAuth: []
+      responses:
+        200:
+          description: User details
+          schema:
+            $ref: "#/definitions/UserResponse"
+  /user/me/memberships:
+    get:
+      security:
+        - basicAuth: []
+      responses:
+        200:
+          description: List of companes you are assigned to
+          schema:
+            $ref: "#/definitions/MembershipsResponse"
+  /token/logout:
+    post:
+      security:
+        - basicAuth: []
+      responses:
+        200:
+          description: Logout confirmation
+          schema:
+            $ref: "#/definitions/LogoutResponse"
+definitions:
+  LoginRequest:
+    properties:
+      password:
+        type: string
+        description: Base64 encoded
+  LoginResponse:
+    properties:
+      status_code:
+        type: integer
+      status_text:
+        type: string
+      data:
+        $ref: "#/definitions/LoginResponseData"
+  LoginResponseData:
+    properties:
+      Id:
+        description: Access token
+        type: string
+      UserId:
+        description: User id
+        type: string
+      Created:
+        description: Access token creation date
+        type: string
+        format: date-time
+  UserResponse:
+    properties:
+      status_code:
+        type: integer
+      status_text:
+        type: string
+      data:
+        $ref: "#/definitions/UserResponseData"
+  UserResponseData:
+    propertiesbestätigung:
+      email:
+        description: Your email address
+        type: string
+      username:
+        description: Your username
+        type: string
+  MembershipsResponse:
+    properties:
+      status_code:
+        type: integer
+      status_text:
+        type: string
+      data:
+        type: array
+        items:
+          description: Company name
+          type: string
+  LogoutResponse:
+    properties:
+      status_code:
+        type: integer
+      status_text:
+        type: string
