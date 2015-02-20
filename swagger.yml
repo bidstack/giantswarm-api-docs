@@ -51,7 +51,7 @@ paths:
         - basicAuth: []
       responses:
         200:
-          description: List of companes you are assigned to
+          description: List of companies you are assigned to
           schema:
             $ref: "#/definitions/MembershipsResponse"
   /token/logout:
