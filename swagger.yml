@@ -54,6 +54,32 @@ paths:
           description: List of companies you are assigned to
           schema:
             $ref: "#/definitions/MembershipsResponse"
+  /user/me/email/update:
+    post:
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/UpdateEmailRequest"
+      responses:
+        200:
+          description: Update email confirmation
+          schema:
+            $ref: "#/definitions/BasicResponse"
+  /user/me/email/password:
+    post:
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/UpdatePasswordRequest"
+      responses:
+        200:
+          description: Update password confirmation
+          schema:
+            $ref: "#/definitions/BasicResponse"
   /token/logout:
     post:
       security:
@@ -253,3 +279,19 @@ definitions:
       CpuUsagePercent:
         type: float
         description: CPU usage percent
+  UpdateEmailRequest:
+    properties:
+      old_email:
+        type: string
+        description: Old email address
+      new_email:
+        type: string
+        description: New email address
+  UpdatePasswordRequest:
+    properties:
+      old_password:
+        type: string
+        description: Old password (Base64 encoded)
+      new_password:
+        type: string
+        description: New password (Base64 encoded)
