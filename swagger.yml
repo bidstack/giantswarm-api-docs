@@ -130,6 +130,24 @@ paths:
             description: User removed confirmation
             schema:
               $ref: "#/definitions/BasicResponse"
+  /company/{company_name}/instance/{instance_id}/stats:
+    get:
+      security:
+        - basicAuth: []
+      parameters:
+        - name: company_name
+          in: path
+          type: string
+          required: true
+        - name: instance_id
+          in: path
+          type: string
+          required: true
+      responses:
+        200:
+          description: Instance statistics
+          schema:
+            $ref: "#/definitions/InstanceStatisticsResponse"
 definitions:
   BasicResponse:
     properties:
@@ -210,3 +228,28 @@ definitions:
       username:
         type: string
         description: Username
+  InstanceStatisticsResponse:
+    properties:
+      status_code:
+        type: integer
+      status_text:
+        type: string
+      data:
+        $ref: "#/definitions/InstanceStatisticsData"
+  InstanceStatisticsData:
+    properties:
+      ComponentName:
+        type: string
+        description: Component name
+      MemoryUsageMb:
+        type: float
+        description: Memory usage (MB)
+      MemoryCapacityMb:
+        type: float
+        description: Memory capacity (MB)
+      MemoryUsagePercent:
+        type: float
+        description: Memory usage (%)
+      CpuUsagePercent:
+        type: float
+        description: CPU usage percent
