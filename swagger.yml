@@ -174,6 +174,50 @@ paths:
           description: Instance statistics
           schema:
             $ref: "#/definitions/InstanceStatisticsResponse"
+  /company/{company_name}/env/{environment_name}/app/{application_name}/start:
+    post:
+      security:
+        - basicAuth: []
+      parameters:
+        - name: company_name
+          in: path
+          required: true
+          type: string
+        - name: environment_name
+          in: path
+          required: true
+          type: string
+        - name: application_name
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description:
+          schema:
+            $ref: "#/definitions/BasicResponse"
+  /company/{company_name}/env/{environment_name}/app/{application_name}/stop:
+    post:
+      security:
+        - basicAuth: []
+      parameters:
+        - name: company_name
+          in: path
+          required: true
+          type: string
+        - name: environment_name
+          in: path
+          required: true
+          type: string
+        - name: application_name
+          in: path
+          required: true
+          type: string
+      responses:
+        200:
+          description:
+          schema:
+            $ref: "#/definitions/BasicResponse"
 definitions:
   BasicResponse:
     properties:
