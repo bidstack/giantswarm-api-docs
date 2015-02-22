@@ -104,12 +104,12 @@ paths:
           description: Creation confirmation
           schema:
             $ref: "#/definitions/BasicResponse"
-  /company/{name}:
+  /company/{company_name}:
     delete:
       security:
         - basicAuth: []
       parameters:
-        - name: name
+        - name: company_name
           in: path
           required: true
           type: string
@@ -118,12 +118,12 @@ paths:
           description: Deletion confirmation
           schema:
             $ref: "#/definitions/BasicResponse"
-  /company/{name}/members/add:
+  /company/{company_name}/members/add:
     post:
       security:
         - basicAuth: []
       parameters:
-        - name: name
+        - name: company_name
           in: path
           required: true
           type: string
@@ -137,7 +137,7 @@ paths:
           description: User added confirmation
           schema:
             $ref: "#/definitions/BasicResponse"
-  /company/{name}/members/remove:
+  /company/{company_name}/members/remove:
     post:
       security:
         - basicAuth: []
