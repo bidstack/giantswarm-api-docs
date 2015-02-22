@@ -92,6 +92,44 @@ paths:
           description: Deletion confirmation
           schema:
             $ref: "#/definitions/BasicResponse"
+  /company/{name}/members/add:
+    post:
+      security:
+        - basicAuth: []
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/AddUserToCompanyRequest"
+      responses:
+        200:
+          description: User added confirmation
+          schema:
+            $ref: "#/definitions/BasicResponse"
+  /company/{name}/members/remove:
+    post:
+      security:
+        - basicAuth: []
+        parameters:
+          - name: name
+            in: path
+            required: true
+            type: string
+          - name: body
+            in: body
+            required: true
+            schema:
+              $ref: "#/definitions/RemoveUserFromCompanyRequest"
+        responses:
+          200:
+            description: User removed confirmation
+            schema:
+              $ref: "#/definitions/BasicResponse"
 definitions:
   BasicResponse:
     properties:
@@ -162,3 +200,13 @@ definitions:
       company_id:
         type: string
         description: Company name
+  AddUserToCompanyRequest:
+    properties:
+      username:
+        type: string
+        description: Username
+  RemoveUserFromCompanyRequest:
+    properties:
+      username:
+        type: string
+        description: Username
