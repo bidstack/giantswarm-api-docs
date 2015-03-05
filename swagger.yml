@@ -142,7 +142,7 @@ paths:
       security:
         - basicAuth: []
       parameters:
-        - name: name
+        - name: company_name
           in: path
           required: true
           type: string
