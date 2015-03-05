@@ -193,7 +193,7 @@ paths:
           type: string
       responses:
         200:
-          description:
+          description: Application start status
           schema:
             $ref: "#/definitions/BasicResponse"
   /company/{company_name}/env/{environment_name}/app/{application_name}/stop:
@@ -215,7 +215,7 @@ paths:
           type: string
       responses:
         200:
-          description:
+          description: Application stop status
           schema:
             $ref: "#/definitions/BasicResponse"
 definitions:
