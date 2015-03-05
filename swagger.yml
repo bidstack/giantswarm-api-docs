@@ -312,16 +312,20 @@ definitions:
         type: string
         description: Component name
       MemoryUsageMb:
-        type: float
+        type: number
+        format: float
         description: Memory usage (MB)
       MemoryCapacityMb:
-        type: float
+        type: number
+        format: float
         description: Memory capacity (MB)
       MemoryUsagePercent:
-        type: float
+        type: number
+        format: float
         description: Memory usage (%)
       CpuUsagePercent:
-        type: float
+        type: number
+        format: float
         description: CPU usage percent
   UpdateEmailRequest:
     properties:
