@@ -141,21 +141,21 @@ paths:
     post:
       security:
         - basicAuth: []
-        parameters:
-          - name: name
-            in: path
-            required: true
-            type: string
-          - name: body
-            in: body
-            required: true
-            schema:
-              $ref: "#/definitions/RemoveUserFromCompanyRequest"
-        responses:
-          200:
-            description: User removed confirmation
-            schema:
-              $ref: "#/definitions/BasicResponse"
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/RemoveUserFromCompanyRequest"
+      responses:
+        200:
+          description: User removed confirmation
+          schema:
+            $ref: "#/definitions/BasicResponse"
   /company/{company_name}/instance/{instance_id}/stats:
     get:
       security:
